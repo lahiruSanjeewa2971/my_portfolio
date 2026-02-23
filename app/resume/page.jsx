@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 const about = {
   title: "About me",
   description:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores vero facere ullam",
+    "I’m a dedicated software engineer who enjoys building practical solutions through clean and efficient code. I have a strong interest in modern JavaScript technologies and love working on projects that challenge my problem-solving skills. I’m always eager to learn new tools, improve my architecture decisions, and grow as a full-stack developer.",
   info: [
     {
       fieldName: "Name",
@@ -27,7 +27,7 @@ const about = {
     },
     {
       fieldName: "Experience",
-      fieldValue: "2 Years",
+      fieldValue: "3 Years",
     },
     {
       fieldName: "Nationality",
@@ -48,7 +48,7 @@ const experience = {
   icon: "/assets/resume/badge.svg",
   title: "My experience",
   description:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores vero facere ullam",
+    "Over the past two years, I have worked as a software engineer building real-world web and mobile applications. My experience includes developing scalable frontend architectures, integrating APIs, handling authentication, and delivering production-ready solutions. I’ve collaborated on projects from concept to deployment while maintaining clean, maintainable code.",
   items: [
     {
       company: "SYNAPSYS LTD",
@@ -67,7 +67,7 @@ const education = {
   icon: "/assets/resume/cap.svg",
   title: "My education",
   description:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores vero facere ullam",
+    "I have pursued a strong academic foundation in information technology, specializing in software engineering. My education has equipped me with the knowledge and skills necessary to excel in the field of software development.",
   items: [
     {
       institution: "SLIIT",
@@ -87,7 +87,7 @@ const skills = {
   // icon: '/assets/resume/cap.svg',
   title: "My skills",
   description:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores vero facere ullam",
+    "I work with modern web technologies to build responsive and performant applications. My expertise spans across frontend frameworks, backend development, and database management, allowing me to deliver complete full-stack solutions.",
   skillList: [
     {
       icon: <FaHtml5 />,

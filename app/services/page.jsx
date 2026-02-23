@@ -9,14 +9,14 @@ const services = [
     num: "01",
     title: "Web Development",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores vero facere ullam",
+      "I build modern, responsive, and high-performance web applications using React, Node.js, and modern UI frameworks. From landing pages to full-scale web platforms, I focus on clean code, scalability, and seamless user experience.",
     href: "",
   },
   {
     num: "02",
     title: "Mobile App Development",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores vero facere ullam",
+      "I develop cross-platform mobile applications using React Native, delivering smooth performance and native-like experiences on both Android and iOS. My focus is on usability, performance, and real-world production readiness.",
     href: "",
   },
 ];

@@ -1,3 +1,5 @@
+"use client";
+
 import Photo from "@/components/Photo";
 import Social from "@/components/Social";
 import Stats from "@/components/Stats";
@@ -16,13 +18,7 @@ const Home = () => {
               <span className="text-accent">Lahiru Sanjeewa</span>
             </h1>
             <p className="max-w-[500px] mb-9 text-white/80">
-              I'm a dedicated software engineer with two years of hands-on
-              experience in React, React Native and nodejs. Passionate about creating
-              seamless user experiences, I've honed my skills in building
-              dynamic and responsive applications. With a knack for
-              problem-solving and a commitment to continuous learning, I strive
-              to deliver high-quality code and innovative solutions in every
-              project.
+              I’m a software engineer with 3+ years of hands-on experience building web and mobile applications using React, React Native, and Node.js. I specialize in crafting responsive, user-focused interfaces and scalable backend solutions. Driven by problem-solving and continuous learning, I enjoy turning complex requirements into clean, efficient, and production-ready applications.
             </p>
 
             {/* cv and social links */}
@@ -31,6 +27,7 @@ const Home = () => {
                 variant="outline"
                 size="lg"
                 className="uppercase flex items-center gap-2"
+                onClick={() => window.open('/assets/resume/cv.pdf', '_blank')}
               >
                 <span>Download CV</span>
                 <FiDownload className="text-xl" />
