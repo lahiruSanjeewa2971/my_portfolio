@@ -1,7 +1,8 @@
 "use client";
 
 import { FaHtml5, FaCss3, FaJs, FaReact, FaNodeJs } from "react-icons/fa";
-import { SiTailwindcss, SiMongodb } from "react-icons/si";
+import { SiTailwindcss, SiMongodb, SiPostgresql, SiNextdotjs } from "react-icons/si";
+import { TbBrandReactNative } from "react-icons/tb";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
@@ -106,6 +107,14 @@ const skills = {
       name: "react.js",
     },
     {
+      icon: <TbBrandReactNative />,
+      name: "react native",
+    },
+    {
+      icon: <SiNextdotjs />,
+      name: "next.js",
+    },
+    {
       icon: <FaNodeJs />,
       name: "node.js",
     },
@@ -116,6 +125,10 @@ const skills = {
     {
       icon: <SiMongodb />,
       name: "mongodb",
+    },
+    {
+      icon: <SiPostgresql />,
+      name: "postgresql",
     },
   ],
 };

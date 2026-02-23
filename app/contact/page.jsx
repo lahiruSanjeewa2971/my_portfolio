@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const info = [
   {
@@ -34,6 +35,71 @@ const info = [
 ];
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState({ type: "", message: "" });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleServiceChange = (value) => {
+    setFormData((prev) => ({ ...prev, service: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setStatus({ type: "", message: "" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({
+          type: "success",
+          message: "Message sent successfully! I'll get back to you soon.",
+        });
+        setFormData({
+          firstname: "",
+          lastname: "",
+          email: "",
+          phone: "",
+          service: "",
+          message: "",
+        });
+      } else {
+        setStatus({
+          type: "error",
+          message: data.error || "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: "An error occurred. Please try again later.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -47,44 +113,96 @@ const Contact = () => {
         <div className="flex flex-col xl:flex-row gap-[30px]">
           {/* Form */}
           <div className="xl:w-[54%] order-2 xl:order-none">
-            <form className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl">
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl"
+            >
               <h3 className="text-4xl text-accent">Let's work together</h3>
-              {/* <p className="text-white/60">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Exercitationem culpa ab iste fuga fugiat?
-              </p> */}
+
+              {/* Status Message */}
+              {status.message && (
+                <div
+                  className={`p-4 rounded-lg ${
+                    status.type === "success"
+                      ? "bg-accent/10 text-accent border border-accent/20"
+                      : "bg-red-500/10 text-red-500 border border-red-500/20"
+                  }`}
+                >
+                  {status.message}
+                </div>
+              )}
 
               {/* form */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input type="firstname" placeholder="Firstname" />
-                <Input type="lastname" placeholder="Lastname" />
-                <Input type="email" placeholder="Email address" />
-                <Input type="phone" placeholder="Phone number" />
+                <Input
+                  type="text"
+                  name="firstname"
+                  placeholder="Firstname"
+                  value={formData.firstname}
+                  onChange={handleChange}
+                  required
+                />
+                <Input
+                  type="text"
+                  name="lastname"
+                  placeholder="Lastname"
+                  value={formData.lastname}
+                  onChange={handleChange}
+                  required
+                />
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Email address"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+                <Input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone number"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
               </div>
 
               {/* select */}
-              <Select>
+              <Select value={formData.service} onValueChange={handleServiceChange}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a service" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Select a service</SelectLabel>
-                    <SelectItem value="est">Web development</SelectItem>
-                    <SelectItem value="cst">Mobile app development</SelectItem>
+                    <SelectItem value="Web development">
+                      Web development
+                    </SelectItem>
+                    <SelectItem value="Mobile app development">
+                      Mobile app development
+                    </SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
 
               {/* text area */}
               <Textarea
+                name="message"
                 className="h-[200px]"
                 placeholder="Type your message here."
+                value={formData.message}
+                onChange={handleChange}
+                required
               />
 
               {/* button */}
-              <Button size="md" className="max-w-40">
-                Send message
+              <Button
+                type="submit"
+                size="md"
+                className="max-w-40"
+                disabled={isLoading}
+              >
+                {isLoading ? "Sending..." : "Send message"}
               </Button>
             </form>
           </div>
